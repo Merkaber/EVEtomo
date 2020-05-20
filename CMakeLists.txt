@@ -1,6 +1,25 @@
 cmake_minimum_required(VERSION 3.15)
-project(EVEtomo)
+project(EVEtomo VERSION 1.0.0 DESCRIPTION "An EVE native application which helps you with industry and market decisions")
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(EVEtomo main.cpp)
+### Add path for pkg-config on windows
+if(WIN32)
+    set(PKG_CONFIG_EXECUTABLE "C:/msys64/mingw64/bin/pkg-config.exe")
+endif(WIN32)
+
+### Add pkg-config
+find_package(PkgConfig)
+
+### Link with gtkmm-3.0
+pkg_check_modules(GTKMM REQUIRED gtkmm-3.0)
+include_directories(${GTKMM_INCLUDE_DIRS})
+link_directories(${GTKMM_LIBRARY_DIRS})
+
+if(WIN32)
+    set(SOURCE_FILES WIN32 main.cpp)
+endif(WIN32)
+
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
+target_link_libraries(${CMAKE_PROJECT_NAME} ${GTKMM_LIBRARIES})
