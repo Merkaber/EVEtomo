@@ -4,27 +4,40 @@
  * Copyright (c) 2020 Simon Piorecki
  */
 
+#include <iostream>
+
 #ifdef WIN32
 #include <windows.h>
 #endif
 
-int getPrimaryScreenWidth();
-int getPrimaryScreenHeight();
+#include "WindowManager.h"
 
-int main()
+int get_primary_screen_width();
+int get_primary_screen_height();
+
+int main(int argc, char* argv[])
 {
+    int screen_width = get_primary_screen_width();
+    int screen_height= get_primary_screen_height();
+
+    if (screen_width == 0 || screen_height == 0) {
+        std::cout << "Could not retrieve the screen size!" << std::endl;
+        return 1;
+    }
+
+    WindowManager* window_manager = new WindowManager(screen_width, screen_height);
 
     return 0;
 }
 
-int getPrimaryScreenWidth()
+int get_primary_screen_width()
 {
 #ifdef WIN32
     return GetSystemMetrics(SM_CXSCREEN);
 #endif
 }
 
-int getPrimaryScreenHeight()
+int get_primary_screen_height()
 {
 #ifdef WIN32
     return GetSystemMetrics(SM_CYSCREEN);
