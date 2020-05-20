@@ -23,7 +23,7 @@ if(WIN32)
 endif(WIN32)
 
 if(WIN32)
-    set(SOURCE_FILES WIN32 main.cpp)
+    set(SOURCE_FILES WIN32 main.cpp WindowManager.cpp WindowManager.h)
 endif(WIN32)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})

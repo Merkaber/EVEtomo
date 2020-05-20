@@ -1,4 +1,8 @@
-#include <iostream>
+/*
+ * EVEtomo
+ *
+ * Copyright (c) 2020 Simon Piorecki
+ */
 
 #ifdef WIN32
 #include <windows.h>
@@ -9,7 +13,7 @@ int getPrimaryScreenHeight();
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+
     return 0;
 }
 
