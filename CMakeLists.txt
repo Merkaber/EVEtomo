@@ -17,9 +17,14 @@ pkg_check_modules(GTKMM REQUIRED gtkmm-3.0)
 include_directories(${GTKMM_INCLUDE_DIRS})
 link_directories(${GTKMM_LIBRARY_DIRS})
 
+### Make ryml a subproject
+if(WIN32)
+    add_subdirectory(../libraries/rapidyaml ryml)
+endif(WIN32)
+
 if(WIN32)
     set(SOURCE_FILES WIN32 main.cpp)
 endif(WIN32)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
-target_link_libraries(${CMAKE_PROJECT_NAME} ${GTKMM_LIBRARIES})
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${GTKMM_LIBRARIES} ryml)
