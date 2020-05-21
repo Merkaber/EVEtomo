@@ -1,6 +1,8 @@
-//
-// Created by Merkaber on 21.05.2020.
-//
+/*
+ * EVEtomo
+ *
+ * Copyright (c) 2020 Simon Piorecki
+ */
 
 #pragma once
 
@@ -9,7 +11,7 @@
 class StartWindow : public Gtk::Window
 {
 public:
-    StartWindow(BaseObjectType* object, Glib::RefPtr<Gtk::Builder>  glade_ref) noexcept;
+    StartWindow(BaseObjectType* object, Glib::RefPtr<Gtk::Builder>& glade_ref);
 
     void set_window_manager_context(WindowManager* context) noexcept;
 

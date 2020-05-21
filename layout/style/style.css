@@ -1,0 +1,48 @@
+/*
+ * Pre-defined colors for this application
+ */
+@define-color mono #25231E;
+@define-color mono_slc #787878;
+@define-color mono_red #F9193E;
+@define-color mono_blue #0AD2F5;
+@define-color mono_green #96F023;
+@define-color mono_orange #FF9114;
+
+/*
+ * The start_window
+ */
+#wnd_start {
+    background: @mono_slc;
+}
+
+/*
+ * The button "Market" as child object of the start window
+ */
+#btn_market {
+    background: @mono;
+    font: 20px "Comic Sans MS";
+    color: white;
+}
+
+/*
+ * The button "Market" as child object of the start window, when hovered
+ */
+#btn_market:hover {
+    background: @mono_slc;
+}
+
+/*
+ * The button "Industry" as child object of the start window
+ */
+#btn_industry {
+    background: @mono;
+    font: 20px "Comic Sans MS";
+    color: white;
+}
+
+/*
+ * The button "Industry" as child object of the start window, when hovered
+ */
+#btn_industry:hover {
+    background: @mono_slc;
+}
