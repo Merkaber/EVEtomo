@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 
     WindowManager* window_manager = new WindowManager(screen_width, screen_height);
 
+    delete window_manager;
     return 0;
 }
 
