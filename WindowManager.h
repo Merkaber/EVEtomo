@@ -34,6 +34,9 @@ public:
 
     const bool& is_running() const noexcept;
 
+    template <typename T_window>
+    void switch_window(T_window* new_window) noexcept;
+
 private:
     template <typename T_window>
     void build_window(Glib::ustring& window_name, T_window* window_ref) noexcept;

@@ -70,6 +70,21 @@ void WindowManager::set_default_window_style(T_window* window_ref) noexcept
     style_context->add_provider_for_screen(screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 }
 
+template <typename T_window>
+void WindowManager::switch_window(T_window* new_window) noexcept
+{
+    if (new_window != current_window) {
+        main_app->hold();
+        current_window->hide();
+        main_app->remove_window(*current_window);
+
+        current_window = new_window;
+        main_app->add_window(*current_window);
+        current_window->show();
+        main_app.release();
+    }
+}
+
 const bool& WindowManager::is_running() const noexcept
 {
     return running;
