@@ -25,10 +25,17 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    WindowManager* window_manager = new WindowManager(screen_width, screen_height);
+    auto window_manager = new WindowManager(screen_width, screen_height);
+    int res = window_manager->run();
 
     delete window_manager;
-    return 0;
+
+    if (res == 0) {
+        std::cout << "Something went wrong!" << std::endl;
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 int get_primary_screen_width()
