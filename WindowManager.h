@@ -19,6 +19,8 @@
 
 #include "gtkmm.h"
 
+class DataHelper;
+
 class StartWindow;
 class MarketWindow;
 class IndustryWindow;
@@ -68,4 +70,6 @@ private:
     const int primary_screen_height;
 
     bool running = false;
+
+    DataHelper* data_helper;
 };

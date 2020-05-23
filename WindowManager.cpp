@@ -6,6 +6,8 @@
 
 #include "WindowManager.h"
 
+#include "data/DataHelper.h"
+
 #include "window/StartWindow.h"
 #include "window/MarketWindow.h"
 #include "window/IndustryWindow.h"
@@ -19,6 +21,8 @@ WindowManager::WindowManager(int screen_width, int screen_height) noexcept : pri
             {WindowManager::Windows::MARKET_WINDOW, WND_MARKET},
             {WindowManager::Windows::INDUSTRY_WINDOW, WND_INDUSTRY}
     };
+
+    data_helper = new DataHelper();
 
     build_window(window_names[WindowManager::Windows::START_WINDOW], start_window);
     set_default_window_size(start_window);
@@ -35,6 +39,7 @@ WindowManager::WindowManager(int screen_width, int screen_height) noexcept : pri
 
 WindowManager::~WindowManager() noexcept
 {
+    delete data_helper;
 }
 
 int WindowManager::run() noexcept
