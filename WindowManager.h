@@ -36,7 +36,7 @@ public:
     };
 
 public:
-    WindowManager(int screen_width, int screen_height) noexcept;
+    WindowManager(int argc, char** argv, int screen_width, int screen_height) noexcept;
     ~WindowManager() noexcept;
 
     int run() noexcept;

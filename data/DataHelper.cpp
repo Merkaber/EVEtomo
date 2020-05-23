@@ -15,6 +15,7 @@
 
 DataHelper::DataHelper()
 {
+    std::cout << "hello" << std::endl;
     load_market_groups();
 }
 
@@ -34,14 +35,6 @@ void DataHelper::load_market_groups() noexcept
             unsigned int id;
             std::vector<std::pair<Glib::ustring, Glib::ustring>> descriptions;
             std::vector<std::pair<Glib::ustring, Glib::ustring>> names;
-
-            if (c.has_key()) {
-                std::cout << "key: " << c.key();
-            }
-
-            if (c.has_val()) {
-                std::cout << "-- val: " << c.val() << std::endl;
-            }
 
             MarketGroupItem m(id, descriptions, names);
             market_group_items.push_back(m);

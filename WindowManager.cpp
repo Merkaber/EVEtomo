@@ -12,9 +12,9 @@
 #include "window/MarketWindow.h"
 #include "window/IndustryWindow.h"
 
-WindowManager::WindowManager(int screen_width, int screen_height) noexcept : primary_screen_width(screen_width), primary_screen_height(screen_height)
+WindowManager::WindowManager(int argc, char** argv, int screen_width, int screen_height) noexcept : primary_screen_width(screen_width), primary_screen_height(screen_height)
 {
-    main_app = Gtk::Application::create(APPLICATION_ID);
+    main_app = Gtk::Application::create(argc, argv, APPLICATION_ID);
 
     window_names = {
             {WindowManager::Windows::START_WINDOW, WND_START},
