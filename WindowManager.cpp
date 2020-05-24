@@ -112,7 +112,7 @@ void WindowManager::switch_window(WindowManager::Windows window) noexcept
         current_window = chosen_window;
         main_app->add_window(*current_window);
         current_window->show();
-        main_app.release();
+        main_app->release();
     }
 }
 
