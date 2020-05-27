@@ -22,8 +22,6 @@ WindowManager::WindowManager(int argc, char** argv, int screen_width, int screen
             {WindowManager::Windows::INDUSTRY_WINDOW, WND_INDUSTRY}
     };
 
-    data_helper = new DataHelper();
-
     build_window(window_names[WindowManager::Windows::START_WINDOW], start_window);
     set_default_window_size(start_window);
     set_default_window_style(start_window);
@@ -35,6 +33,10 @@ WindowManager::WindowManager(int argc, char** argv, int screen_width, int screen
     build_window(window_names[WindowManager::Windows::INDUSTRY_WINDOW], industry_window);
     set_default_window_size(industry_window);
     set_default_window_style(industry_window);
+
+    data_helper = new DataHelper();
+    data_helper->set_market_window(*market_window);
+    data_helper->set_industry_window(*industry_window);
 }
 
 WindowManager::~WindowManager() noexcept
