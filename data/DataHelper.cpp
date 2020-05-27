@@ -8,15 +8,25 @@
 
 #include <fstream>
 #include <utility>
+#include <thread>
 #include <iostream>
 
 #include "ryml.hpp"
-#include "models/MarketGroupItem.h"
+#include "model/MarketGroupItem.h"
+#include "../window/MarketWindow.h"
+#include "../window/IndustryWindow.h"
 
-DataHelper::DataHelper()
+DataHelper::DataHelper() : market_window(nullptr), industry_window(nullptr)
 {
-    std::cout << "hello" << std::endl;
-    load_market_groups();
+    market_group_keys = {
+            {DataHelper::MarketGroupKeys::DESCRIPTION_ID_KEY, MKTG_DESCRIPTION_ID_KEY},
+            {DataHelper::MarketGroupKeys::HAS_TYPES_KEY, MKTG_HAS_TYPES_KEY},
+            {DataHelper::MarketGroupKeys::ICON_ID_KEY, MKTG_ICON_ID_KEY},
+            {DataHelper::MarketGroupKeys::NAME_ID_KEY, MKTG_NAME_ID},
+            {DataHelper::MarketGroupKeys::PARENT_GROUP_ID, MKTG_PARENT_GROUP_ID}
+    };
+
+    std::thread(&DataHelper::load_market_groups, this).detach();
 }
 
 DataHelper::~DataHelper()
@@ -30,16 +40,54 @@ void DataHelper::load_market_groups() noexcept
     ryml::Tree tree = ryml::parse(c4::to_substr(&market_groups_yaml[0]));
 
     c4::yml::NodeRef node_ref(tree);
-    if (node_ref.has_children()) {
-        for (c4::yml::NodeRef c : node_ref.children()) {
-            unsigned int id;
-            std::vector<std::pair<Glib::ustring, Glib::ustring>> descriptions;
-            std::vector<std::pair<Glib::ustring, Glib::ustring>> names;
+    for (c4::yml::NodeRef nr : node_ref.children()) {
+        unsigned int id_tmp = 0;
+        std::vector<std::pair<Glib::ustring, Glib::ustring>> descriptions_tmp;
+        std::vector<std::pair<Glib::ustring, Glib::ustring>> names_tmp;
+        bool has_types_tmp = false;
+        unsigned int icon_id_tmp = 0;
+        unsigned int parent_id_tmp = 0;
 
-            MarketGroupItem m(id, descriptions, names);
-            market_group_items.push_back(m);
+        if (nr.key().is_integer()) {
+            id_tmp = std::stoi(nr.key().str);
         }
+
+        for (c4::yml::NodeRef nrr : nr.children()) {
+            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::DESCRIPTION_ID_KEY]) {
+                for (c4::yml::NodeRef nrrr : nrr.children()) {
+                    descriptions_tmp.emplace_back(nrrr.key().str, nrrr.val().str);
+                }
+            }
+
+            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::HAS_TYPES_KEY]) {
+                if (nrr.val() == "true") {
+                    has_types_tmp = true;
+                }
+            }
+
+            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::ICON_ID_KEY]) {
+                if (nrr.val().is_integer()) {
+                    icon_id_tmp = std::stoi(nrr.val().str);
+                }
+            }
+
+            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::NAME_ID_KEY]) {
+                for (c4::yml::NodeRef nrrr : nrr.children()) {
+                    names_tmp.emplace_back(nrrr.key().str, nrrr.val().str);
+                }
+            }
+
+            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::PARENT_GROUP_ID]) {
+                if (nrr.val().is_integer()) {
+                    parent_id_tmp = std::stoi(nrr.val().str);
+                }
+            }
+        }
+
+        market_group_items.emplace_back(id_tmp, descriptions_tmp, names_tmp, has_types_tmp, icon_id_tmp, parent_id_tmp);
     }
+
+    market_window->populate_market_group_trv(market_group_items);
 }
 
 std::string DataHelper::load_file(const std::string& path) const noexcept
@@ -64,4 +112,14 @@ void DataHelper::set_yaml_market_groups_path(std::string m_yaml_market_groups_pa
 const std::string& DataHelper::get_yaml_market_groups_path() const noexcept
 {
     return yaml_market_groups_path;
+}
+
+void DataHelper::set_market_window(const MarketWindow& window) noexcept
+{
+    market_window = &window;
+}
+
+void DataHelper::set_industry_window(const IndustryWindow& window) noexcept
+{
+    industry_window = &window;
 }
