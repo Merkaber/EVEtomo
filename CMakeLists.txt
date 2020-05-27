@@ -29,4 +29,4 @@ if(WIN32)
 endif(WIN32)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
-target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${GTKMM_LIBRARIES} ryml)
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${GTKMM_LIBRARIES} ryml pthread)
