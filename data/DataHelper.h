@@ -36,6 +36,8 @@ public:
     DataHelper();
     ~DataHelper();
 
+    void load_market_groups() noexcept;
+
     void set_yaml_market_groups_path(std::string m_yaml_market_groups_path) noexcept;
     const std::string& get_yaml_market_groups_path() const noexcept;
 
@@ -43,8 +45,6 @@ public:
     void set_industry_window(const IndustryWindow& window) noexcept;
 
 private:
-    void load_market_groups() noexcept;
-
     std::string load_file(const std::string& path) const noexcept;
 
 private:

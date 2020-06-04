@@ -49,37 +49,37 @@ void DataHelper::load_market_groups() noexcept
         unsigned int parent_id_tmp = 0;
 
         if (nr.key().is_integer()) {
-            id_tmp = std::stoi(nr.key().str);
+            c4::atou(nr.key(), &id_tmp);
         }
 
         for (c4::yml::NodeRef nrr : nr.children()) {
-            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::DESCRIPTION_ID_KEY]) {
+            if (nrr.key() == c4::to_substr(&(market_group_keys[DataHelper::MarketGroupKeys::DESCRIPTION_ID_KEY])[0])) {
                 for (c4::yml::NodeRef nrrr : nrr.children()) {
-                    descriptions_tmp.emplace_back(nrrr.key().str, nrrr.val().str);
+                    descriptions_tmp.emplace_back(std::string(nrrr.key().str, nrrr.key().len), std::string(nrrr.val().str, nrrr.val().len));
                 }
             }
 
-            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::HAS_TYPES_KEY]) {
+            if (nrr.key() == c4::to_substr(&(market_group_keys[DataHelper::MarketGroupKeys::HAS_TYPES_KEY])[0])) {
                 if (nrr.val() == "true") {
                     has_types_tmp = true;
                 }
             }
 
-            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::ICON_ID_KEY]) {
+            if (nrr.key() == c4::to_substr(&(market_group_keys[DataHelper::MarketGroupKeys::ICON_ID_KEY])[0])) {
                 if (nrr.val().is_integer()) {
-                    icon_id_tmp = std::stoi(nrr.val().str);
+                    c4::atou(nrr.val(), &icon_id_tmp);
                 }
             }
 
-            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::NAME_ID_KEY]) {
+            if (nrr.key() == c4::to_substr(&(market_group_keys[DataHelper::MarketGroupKeys::NAME_ID_KEY])[0])) {
                 for (c4::yml::NodeRef nrrr : nrr.children()) {
-                    names_tmp.emplace_back(nrrr.key().str, nrrr.val().str);
+                    names_tmp.emplace_back(std::string(nrrr.key().str, nrrr.key().len), std::string(nrrr.val().str, nrrr.val().len));
                 }
             }
 
-            if (nrr.key().str == market_group_keys[DataHelper::MarketGroupKeys::PARENT_GROUP_ID]) {
+            if (nrr.key() == c4::to_substr(&(market_group_keys[DataHelper::MarketGroupKeys::PARENT_GROUP_ID])[0])) {
                 if (nrr.val().is_integer()) {
-                    parent_id_tmp = std::stoi(nrr.val().str);
+                    c4::atou(nrr.val(), &parent_id_tmp);
                 }
             }
         }
