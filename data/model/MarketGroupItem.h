@@ -31,11 +31,11 @@ public:
     const unsigned int& get_parent_id() const noexcept;
 
 private:
-    const unsigned int id = 0;
-    const bool has_types = false;
-    const unsigned int icon_id = 0;
-    const std::vector<std::pair<Glib::ustring, Glib::ustring>> descriptions;
-    const std::vector<std::pair<Glib::ustring, Glib::ustring>> names;
-    const unsigned int parent_id = 0;
+    unsigned int id = 0;
+    bool has_types = false;
+    unsigned int icon_id = 0;
+    std::vector<std::pair<Glib::ustring, Glib::ustring>> descriptions;
+    std::vector<std::pair<Glib::ustring, Glib::ustring>> names;
+    unsigned int parent_id = 0;
 
 };
