@@ -27,11 +27,20 @@ DataHelper::DataHelper() : market_window(nullptr), industry_window(nullptr)
     };
 
     std::thread(&DataHelper::load_market_groups, this).detach();
+    std::thread(&DataHelper::load_types, this).detach();
 }
 
 DataHelper::~DataHelper()
 {
 
+}
+
+void DataHelper::load_types() noexcept
+{
+    std::string types_yaml = load_file(yaml_types_path);
+    ryml::Tree tree = ryml::parse(c4::to_substr(&types_yaml[0]));
+
+    c4::yml::NodeRef node_ref(tree);
 }
 
 void DataHelper::load_market_groups() noexcept

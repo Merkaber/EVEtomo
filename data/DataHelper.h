@@ -37,6 +37,7 @@ public:
     ~DataHelper();
 
     void load_market_groups() noexcept;
+    void load_types() noexcept;
 
     void set_yaml_market_groups_path(std::string m_yaml_market_groups_path) noexcept;
     const std::string& get_yaml_market_groups_path() const noexcept;
@@ -57,5 +58,8 @@ private:
 
     /// Default path to the file: "marketGroups.yaml"
     std::string yaml_market_groups_path = "sde/fsd/marketGroups.yaml";
+
+    /// Default path to the file: "typeIDs.yaml"
+    std::string yaml_types_path = "sde/fsd/typeIDs.yaml";
 
 };
