@@ -38,6 +38,7 @@ public:
 
     void load_market_groups() noexcept;
     void load_types() noexcept;
+    void load_iconIDs() noexcept;
 
     void set_yaml_market_groups_path(std::string m_yaml_market_groups_path) noexcept;
     const std::string& get_yaml_market_groups_path() const noexcept;
@@ -61,5 +62,8 @@ private:
 
     /// Default path to the file: "typeIDs.yaml"
     std::string yaml_types_path = "sde/fsd/typeIDs.yaml";
+
+    /// Default path to the file: "iconIDs.yaml"
+    std::string yaml_icon_ids_path = "sde/fds/iconIDs.yaml";
 
 };
