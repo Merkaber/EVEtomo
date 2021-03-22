@@ -96,6 +96,24 @@ void WindowManager::set_default_window_style(T_window& window_ref) noexcept
     style_context->add_provider_for_screen(screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 }
 
+void WindowManager::show_window(WindowManager::Windows window) noexcept
+{
+    switch (window) {
+        case WindowManager::Windows::MARKET_WINDOW:
+            market_window->show();
+            break;
+        case WindowManager::Windows::INDUSTRY_WINDOW:
+            industry_window->show();
+            break;
+        case WindowManager::Windows::REACTIONS_WINDOW:
+            reactions_window->show();
+            break;
+        case WindowManager::Windows::START_WINDOW:
+            start_window->show();
+            break;
+    }
+}
+
 void WindowManager::switch_window(WindowManager::Windows window) noexcept
 {
     Gtk::Window* chosen_window = nullptr;

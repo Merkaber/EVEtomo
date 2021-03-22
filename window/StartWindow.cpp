@@ -24,17 +24,20 @@ void StartWindow::set_window_manager_context(WindowManager* context) noexcept
 
 void StartWindow::on_btn_market_clicked() const noexcept
 {
-    window_manager_context->switch_window(WindowManager::Windows::MARKET_WINDOW);
+    //window_manager_context->switch_window(WindowManager::Windows::MARKET_WINDOW);
+    window_manager_context->show_window(WindowManager::Windows::MARKET_WINDOW);
 }
 
 void StartWindow::on_btn_industry_clicked() const noexcept
 {
-    window_manager_context->switch_window(WindowManager::Windows::INDUSTRY_WINDOW);
+    //window_manager_context->switch_window(WindowManager::Windows::INDUSTRY_WINDOW);
+    window_manager_context->show_window(WindowManager::Windows::INDUSTRY_WINDOW);
 }
 
 void StartWindow::on_btn_reactions_clicked() const noexcept
 {
-    window_manager_context->switch_window(WindowManager::Windows::REACTIONS_WINDOW);
+    //window_manager_context->switch_window(WindowManager::Windows::REACTIONS_WINDOW);
+    window_manager_context->show_window(WindowManager::Windows::REACTIONS_WINDOW);
 }
 
 const Glib::ustring& StartWindow::get_btn_market_name() const noexcept

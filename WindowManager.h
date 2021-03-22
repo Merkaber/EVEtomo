@@ -48,6 +48,8 @@ public:
 
     void switch_window(WindowManager::Windows window) noexcept;
 
+    void show_window(WindowManager::Windows window) noexcept;
+
 private:
     template <typename T_window>
     void build_window(Glib::ustring& window_name, T_window& window_ref) noexcept;
