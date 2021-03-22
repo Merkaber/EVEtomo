@@ -16,6 +16,13 @@
     <property name="margin_left">10</property>
     <property name="pixbuf">icons\ui\window_icons\market.png</property>
   </object>
+  <object class="GtkImage" id="img_btn_reactions">
+    <property name="name">img_btn_reactions</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_left">10</property>
+    <property name="pixbuf">icons\ui\window_icons\reactions.png</property>
+  </object>
   <object class="GtkWindow" id="wnd_start">
     <property name="name">wnd_start</property>
     <property name="width_request">800</property>
@@ -196,6 +203,7 @@
             <property name="margin_right">10</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
+            <property name="row_spacing">10</property>
             <property name="column_spacing">10</property>
             <property name="row_homogeneous">True</property>
             <property name="column_homogeneous">True</property>
@@ -232,6 +240,26 @@
                 <property name="left_attach">1</property>
                 <property name="top_attach">0</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_reactions">
+                <property name="label" translatable="yes">Reactions</property>
+                <property name="name">btn_reactions</property>
+                <property name="height_request">60</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">img_btn_reactions</property>
+                <property name="image_position">right</property>
+                <property name="always_show_image">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>

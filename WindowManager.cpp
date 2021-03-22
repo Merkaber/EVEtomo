@@ -11,6 +11,7 @@
 #include "window/StartWindow.h"
 #include "window/MarketWindow.h"
 #include "window/IndustryWindow.h"
+#include "window/ReactionsWindow.h"
 
 WindowManager::WindowManager(int argc, char** argv, int screen_width, int screen_height) noexcept : primary_screen_width(screen_width), primary_screen_height(screen_height)
 {
@@ -19,7 +20,8 @@ WindowManager::WindowManager(int argc, char** argv, int screen_width, int screen
     window_names = {
             {WindowManager::Windows::START_WINDOW, WND_START},
             {WindowManager::Windows::MARKET_WINDOW, WND_MARKET},
-            {WindowManager::Windows::INDUSTRY_WINDOW, WND_INDUSTRY}
+            {WindowManager::Windows::INDUSTRY_WINDOW, WND_INDUSTRY},
+            {WindowManager::Windows::REACTIONS_WINDOW, WND_REACTIONS}
     };
 
     build_window(window_names[WindowManager::Windows::START_WINDOW], start_window);
@@ -34,9 +36,14 @@ WindowManager::WindowManager(int argc, char** argv, int screen_width, int screen
     set_default_window_size(industry_window);
     set_default_window_style(industry_window);
 
+    build_window(window_names[WindowManager::Windows::REACTIONS_WINDOW], reactions_window);
+    set_default_window_size(reactions_window);
+    set_default_window_style(reactions_window);
+
     data_helper = new DataHelper();
     data_helper->set_market_window(*market_window);
     data_helper->set_industry_window(*industry_window);
+    data_helper->set_reactions_window(*reactions_window);
 }
 
 WindowManager::~WindowManager() noexcept
@@ -101,6 +108,9 @@ void WindowManager::switch_window(WindowManager::Windows window) noexcept
             break;
         case WindowManager::Windows::INDUSTRY_WINDOW:
             chosen_window = industry_window;
+            break;
+        case WindowManager::Windows::REACTIONS_WINDOW:
+            chosen_window = reactions_window;
             break;
         default:
             chosen_window = nullptr;

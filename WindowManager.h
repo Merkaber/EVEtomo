@@ -16,6 +16,7 @@
 #define WND_START "wnd_start"
 #define WND_MARKET "wnd_market"
 #define WND_INDUSTRY "wnd_industry"
+#define WND_REACTIONS "wnd_reactions"
 
 #include "gtkmm.h"
 
@@ -24,6 +25,7 @@ class DataHelper;
 class StartWindow;
 class MarketWindow;
 class IndustryWindow;
+class ReactionsWindow;
 
 class WindowManager
 {
@@ -32,7 +34,8 @@ public:
     {
         START_WINDOW = 100u,
         MARKET_WINDOW = 200u,
-        INDUSTRY_WINDOW = 300u
+        INDUSTRY_WINDOW = 300u,
+        REACTIONS_WINDOW = 400u
     };
 
 public:
@@ -63,6 +66,7 @@ private:
     StartWindow* start_window = nullptr;
     MarketWindow* market_window = nullptr;
     IndustryWindow* industry_window = nullptr;
+    ReactionsWindow* reactions_window = nullptr;
 
     std::map<WindowManager::Windows, Glib::ustring> window_names;
 

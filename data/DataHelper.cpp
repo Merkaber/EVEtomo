@@ -150,3 +150,8 @@ void DataHelper::set_industry_window(const IndustryWindow& window) noexcept
 {
     industry_window = &window;
 }
+
+void DataHelper::set_reactions_window(const ReactionsWindow& window) noexcept
+{
+    reactions_window = &window;
+}

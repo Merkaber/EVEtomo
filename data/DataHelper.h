@@ -18,6 +18,7 @@
 
 class MarketWindow;
 class IndustryWindow;
+class ReactionsWindow;
 
 class MarketGroupItem;
 
@@ -46,6 +47,7 @@ public:
 
     void set_market_window(const MarketWindow& window) noexcept;
     void set_industry_window(const IndustryWindow& window) noexcept;
+    void set_reactions_window(const ReactionsWindow& window) noexcept;
 
 private:
     std::string load_file(const std::string& path) const noexcept;
@@ -53,6 +55,7 @@ private:
 private:
     const MarketWindow* market_window;
     const IndustryWindow* industry_window;
+    const ReactionsWindow* reactions_window;
 
     std::vector<MarketGroupItem> market_group_items;
 

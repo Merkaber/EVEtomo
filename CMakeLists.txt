@@ -25,7 +25,7 @@ endif(WIN32)
 if(WIN32)
     set(SOURCE_FILES WIN32 main.cpp WindowManager.cpp WindowManager.h window/StartWindow.cpp window/StartWindow.h
             window/MarketWindow.cpp window/MarketWindow.h window/IndustryWindow.cpp window/IndustryWindow.h
-            data/DataHelper.cpp data/DataHelper.h data/model/MarketGroupItem.cpp data/model/MarketGroupItem.h)
+            data/DataHelper.cpp data/DataHelper.h data/model/MarketGroupItem.cpp data/model/MarketGroupItem.h window/ReactionsWindow.cpp window/ReactionsWindow.h)
 endif(WIN32)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})

@@ -46,3 +46,19 @@
 #btn_industry:hover {
     background: @mono_slc;
 }
+
+/*
+ * The button "Reactions" as child object of the start window
+ */
+#btn_reactions {
+    background: @mono;
+    font: 20px "Comic Sans MS";
+    color: white;
+}
+
+/*
+ * The button "Reactions" as child object of the start window, when hovered
+ */
+#btn_reactions:hover {
+    background: @mono_slc;
+}
